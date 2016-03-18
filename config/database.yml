@@ -1,0 +1,23 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: 5
+
+development:
+  adapter: postgresql
+  database: solace_development
+  role: stefunny
+
+test:
+  adapter: postgresql
+  <<: *default
+  database: solace_test
+  role: stefunny
+
+production:
+  <<: *default
+  database: solace_production
+  username: solace
+  password: <%= ENV['SOLACE_DATABASE_PASSWORD'] %>
